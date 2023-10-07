@@ -1,0 +1,95 @@
+<div class="app-loader" *ngIf="isLoading">
+  <div class="spinner"></div>
+</div>
+<div class="container-fluid game-field text-center">
+    <div class="player">
+      <h1>{{gameModel.player1.name}}</h1>
+      <h3>Puntaje: {{gameModel.duel.scorePlayer1}}</h3>
+      
+    </div>
+    <div class="game-controls"> 
+     
+      <div> 
+        <button *ngIf="gameModel.enablePlay === 0"(click)="startGame()" class="btn btn-outline-primary">Iniciar Juego</button>
+        <button *ngIf="gameModel.enablePlay !== 0 "(click)="resetGame()" class="btn btn-outline-success">Reiniciar</button>
+        <button *ngIf="gameModel.playing"(click)="showModalGameOptions()" class="btn btn-outline-primary">Abrir Opciones</button>
+        <button *ngIf="gameModel.enablePlay !== 0" (click)="clearGame()" class="btn btn-outline-secondary">Salir</button>
+      </div>
+      
+    </div>
+    <div class="player">
+      <h1>{{gameModel.player2.name}}</h1>
+      <h3>Puntaje: {{gameModel.duel.scorePlayer2}}</h3>
+     
+    </div>
+  </div>
+  
+  <div class="modal fade text-center" id="modalPlayerName" tabindex="-1"  aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Ingresar nombre</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>{{ modalTextInfo }}</p>
+          <input type="text" id="modalInputNameValue" placeholder="Escribe aquí..." class="form-control" [(ngModel)]='modalInputNameValue'  pattern="^[a-zA-Z0-9\s\b_]+$">
+          <p class="text-danger" *ngIf="modalNameValidation.length > 0">{{modalNameValidation}}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" (click)="addPlayer();">Aceptar</button>
+          <button type="button" class="btn btn-secondary" (click)="clearGame();">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade text-center" id="modalGameOptions" tabindex="-1"  aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Elige una opcion</h5>
+        </div>
+        <div class="modal-body">
+          <div  class="container-cards">
+            <div class="card" (click)="PlayMove(0);">
+                <a id="optRock" href="#"><img src="../assets/img/piedra.png" class="img-game" alt="..."></a>
+                <div class="card-body">
+                  <h3 class="card-title ">Piedra</h3>
+                </div>
+              </div>
+              <div class="card" (click)="PlayMove(1);">
+                <a id="optPaper" href="#" class=""><img src="../assets/img/papel.png" class="img-game" alt="..."></a>
+                <div class="card-body">
+                  <h3 class="card-title">Papel</h3>
+                </div>
+              </div>
+              <div class="card" (click)="PlayMove(2);">
+                  <a id="optScissor" href="#"><img src="../assets/img/tijera.png" class="img-game img-mirror" alt="..."></a>
+                <div class="card-body">
+                  <h3 class="card-title">Tijera</h3>
+                </div>
+              </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade text-center modal-Message" id="modalMessage" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content ">
+        <div class="modal-body">
+
+          <h4>{{fieldTextMessage}}</h4>
+
+          <div class="">
+            <button type="button" class="btn btn-primary" (click)="hideModalMessage();">Aceptar</button>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  

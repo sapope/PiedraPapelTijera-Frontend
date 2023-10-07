@@ -1,0 +1,72 @@
+.card:hover {
+    background-color: #e9ecee; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); 
+    transition: background-color 0.3s, box-shadow 0.3s; 
+  }
+  .card:active {
+    transform: scale(0.95); 
+  }
+  .container-cards{
+    display: flex; 
+  justify-content: space-between; 
+  align-items: center;
+  text-align: center;
+  }
+  .game-field{
+    margin-top: 20%;
+    display: flex; 
+  justify-content: space-between; 
+  align-items: center;
+  text-align: center;
+  }
+
+  .img-game{
+    max-width: 50%;
+    max-height: auto;
+    padding-top: 5%;
+  }
+  .img-mirror{
+    transform: scaleX(-1);
+  }
+  .fiel-info-container{
+    position: relative;
+    align-self: center;
+    top: 10%;
+  }
+
+  .modal-Message{
+    z-index: 9998; 
+  }
+  .btn{
+    padding: 5px;
+    margin: 20px;
+  }
+
+  .app-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semitransparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Asegura que esté por encima de otros elementos */
+  }
+  
+  /* Estilos para el spinner */
+  .spinner {
+    border: 4px solid rgba(255, 255, 255, 0.3); /* Borde del spinner */
+    border-top: 4px solid #3498db; /* Borde superior del spinner en color azul (puedes cambiarlo) */
+    border-radius: 50%; /* Forma circular */
+    width: 60px; /* Ancho del spinner */
+    height: 60px; /* Altura del spinner */
+    animation: spin 1s linear infinite; /* Animación de rotación */
+  }
+  
+  /* Animación de rotación del spinner */
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
